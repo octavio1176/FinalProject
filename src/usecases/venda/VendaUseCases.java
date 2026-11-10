@@ -1,4 +1,5 @@
 package usecases.venda;
 
-public class VendaUseCases {
+public class VendaUseCases  {
+
 }

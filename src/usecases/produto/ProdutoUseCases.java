@@ -27,4 +27,5 @@ public class ProdutoUseCases {
     public List<Produto> listar(){
         return produtoRepository.listarProdutos();
     }
+
 }
