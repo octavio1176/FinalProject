@@ -77,4 +77,5 @@ public class Produto {
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
+
 }

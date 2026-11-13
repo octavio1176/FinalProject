@@ -3,7 +3,7 @@ package domain.produto;
 import java.util.Vector;
 
 public interface ProdutoRepository {
-    void criarProduto(String nome, int id, int quantidade);
+    void criarProduto(String nome, int armazemNumero,  int quantidade);
     Produto procurarPorId(int id);
     Produto procurarPorNome(String nome);
     Vector<Produto> listarProdutosComStockMenorQue5();
@@ -11,6 +11,4 @@ public interface ProdutoRepository {
     void deletarProduto(int codigo);
     void deletarTodosProdutos();
     Vector<Produto> listarProdutos();
-
-
 }

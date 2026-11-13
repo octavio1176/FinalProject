@@ -4,11 +4,13 @@ public class Fornecedor {
     private int codigo;
     private String nome;
     private String nuit;
+    private int codigoFornecedor;
 
-    public Fornecedor(int codigo, String nome, String nuit) {
+    public Fornecedor(int codigo, String nome, String nuit, int codigoFornecedor) {
         this.codigo = codigo;
         this.nome = nome;
         this.nuit = nuit;
+        this.codigoFornecedor=codigoFornecedor;
     }
 
     public int getCodigo() {
@@ -33,6 +35,14 @@ public class Fornecedor {
 
     public void setNuit(String nuit) {
         this.nuit = nuit;
+    }
+
+    public int getCodigoFornecedor() {
+        return codigoFornecedor;
+    }
+
+    public void setCodigoFornecedor(int codigoFornecedor) {
+        this.codigoFornecedor = codigoFornecedor;
     }
 }
 

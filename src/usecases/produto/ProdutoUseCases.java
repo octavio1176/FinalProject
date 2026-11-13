@@ -24,8 +24,18 @@ public class ProdutoUseCases {
         return produtoRepository.procurarPorNome(nome);
     }
 
+    public void eliminarPorNome(String nome){
+        produtoRepository.deletarProduto(nome);
+    }
+
+    public void eliminarPorId(int id){
+        produtoRepository.deletarProduto(id);
+    }
+
     public List<Produto> listar(){
         return produtoRepository.listarProdutos();
     }
+
+
 
 }

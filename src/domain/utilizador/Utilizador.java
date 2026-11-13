@@ -3,10 +3,13 @@ package domain.utilizador;
 public final class Utilizador {
     private String username;
     private String senha;
+    private String email;
 
-    public Utilizador(String username, String senha) {
+    public Utilizador(String username, String senha, String email) {
+
         this.username = username;
         this.senha = senha;
+        this.email=email;
     }
 
     public String getUsername() {
@@ -15,6 +18,10 @@ public final class Utilizador {
 
     public String getSenha() {
         return senha;
+    }
+
+    public String getEmail(){
+        return email;
     }
 
 }
