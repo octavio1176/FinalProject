@@ -1,6 +1,8 @@
 package domain.utilizador;
 
-public final class Utilizador {
+import java.io.Serializable;
+
+public final class Utilizador  implements Serializable {
     private String username;
     private String senha;
     private String email;

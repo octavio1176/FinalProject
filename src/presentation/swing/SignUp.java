@@ -1,6 +1,6 @@
 package presentation.swing;
-
-import domain.utilizador.Utilizador;
+import domain.utilizador.UtilizadorRepository;
+import infrastruture.database.UtilizadorDb;
 import usecases.utilizador.UtilizadorUseCases;
 
 import javax.swing.*;
@@ -23,11 +23,13 @@ public class SignUp extends JFrame {
     private JLabel signUpBanner;
     private ImageIcon imageIcon;
     private JLabel jLabel;
+   private UtilizadorRepository utilizadorRepository;
 
 
 
-  public SignUp()
-  {
+
+  public SignUp() {
+
       JFrame jFrame = new JFrame();
       jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       jFrame.setLocationRelativeTo(null);
@@ -35,12 +37,14 @@ public class SignUp extends JFrame {
       jFrame.setTitle("SIGN UP");
 
       JPanel jPanel = new JPanel(new GridLayout(9, 1));
-     JPanel jPanel1 = new JPanel();
+      JPanel jPanel1 = new JPanel();
 
-      ImageIcon imageIcon = new ImageIcon("C:/Users/User/Music/FinalProject/IMAGE123456.jpg");
-      Image img = imageIcon.getImage().getScaledInstance(200, 150, Image.SCALE_AREA_AVERAGING);
+
+
+      ImageIcon imageIcon =new ImageIcon("C:/Users/User/Music/FinalProject/Captura de ecrã 2026-11-13 205016.png");
+      Image img = imageIcon.getImage().getScaledInstance(300, 340, Image.SCALE_SMOOTH);
       JLabel jLabel = new JLabel(new ImageIcon(img));
-      jPanel1.add(jLabel);
+      jPanel1.add(jLabel, BorderLayout.CENTER);
 
       JPanel jPanelBanner = new JPanel(new FlowLayout(FlowLayout.CENTER));
        signUpBanner = new JLabel("SIGN UP");
@@ -52,7 +56,7 @@ public class SignUp extends JFrame {
        username = new JTextField();
 
        senha= new JLabel("Senha");
-       senh = new JTextField();
+       senh = new JPasswordField();
 
        email= new JLabel("Email");
        emai = new JTextField();
@@ -89,10 +93,7 @@ public class SignUp extends JFrame {
       principal.add(jPanel1, BorderLayout.WEST);
        jFrame.setVisible(true);
        jFrame.add(principal);
-      // jFrame.setIconImage(imageIcon.getImage());
        jFrame.setResizable(false);
-
-
 
        signUp.addActionListener(new ActionListener() {
            @Override
@@ -101,37 +102,30 @@ public class SignUp extends JFrame {
                    String userN = username.getText();
                    String email = emai.getText();
                    String passwor = senh.getText();
+                   utilizadorRepository = new UtilizadorDb();
+                   UtilizadorUseCases utilizadorUseCases = new UtilizadorUseCases(utilizadorRepository);
+
                    try {
+                      utilizadorUseCases.SignUp(userN, email, passwor);
+                       JOptionPane.showMessageDialog(jFrame, "Registado com sucesso");
+                   } catch (IllegalArgumentException ex) {
+                       JOptionPane.showMessageDialog(jFrame, ex.getMessage());
 
-                       if (userN.isBlank()) {
-                           JOptionPane.showMessageDialog(jFrame, "o nome no pode estar vazio");
-                          throw  new IllegalArgumentException();
-
-                       }
-                       if (email.isBlank()){
-                           JOptionPane.showMessageDialog(jFrame, "o email no pode estar vazio");
-                           throw new IllegalArgumentException();
-                       }
-                       if (passwor.isBlank()){
-                           JOptionPane.showMessageDialog(jFrame, "a senha  no pode estar  vazia");
-                           throw new IllegalArgumentException();
-                       }
-                   } catch (IllegalArgumentException k) {
-                       JOptionPane.showMessageDialog(jFrame, "");
+                       JOptionPane.showMessageDialog(jFrame, "Erro ao aceder a base de dados");
                    }
-
-
-                   Utilizador utilizador = new Utilizador(userN, passwor, email);
-                   UtilizadorUseCases utilizadorUseCases = new UtilizadorUseCases();
-                   utilizadorUseCases.SignUp(utilizador.getUsername(), utilizador.getSenha(), utilizador.getEmail());
-                   JOptionPane.showMessageDialog(jFrame, "logado com sucesso");
-
-
                }
-           }
+               }
+
        });
 
+       login.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               new LoginFrame().setVisible(true);
+               SignUp.this.dispose();
 
+           }
+       });
   }
 
     static void main() {

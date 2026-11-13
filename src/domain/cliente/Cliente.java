@@ -1,5 +1,5 @@
 package domain.cliente;
 
-public class Cliente {
+public class Cliente  {
     private String nome;
 }

@@ -1,6 +1,7 @@
 package domain.utilizador;
 
 public interface UtilizadorRepository {
-    void signUp(String username , String senha);
+    Utilizador findUserByName( String senha);
+    void saveUser(String username, String email , String senha);
 
 }
